@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Account;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +13,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $firstUser = User::factory()->create([
             'mobile' => '09359341940',
         ]);
-        User::factory()->create([
+
+        $secondUser = User::factory()->create([
             'mobile' => '09213910615',
+        ]);
+
+        Account::factory()->create([
+            'account_number' => 39098000112460181,
+            'user_id'        => $firstUser->id,
+            'balance'        => 100000,
+            'currency'       => 'IRR',
+            'account_type'   => 'SAVING',
+        ]);
+
+        Account::factory()->create([
+            'account_number' => 39098000112460182,
+            'user_id'        => $secondUser->id,
+            'balance'        => 0,
+            'currency'       => 'IRR',
+            'account_type'   => 'SAVING',
         ]);
     }
 }

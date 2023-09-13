@@ -1,0 +1,88 @@
+version: '3.7'
+services:
+
+    #PHP Service
+    app:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        image: payment/php
+        container_name: payment-app
+        restart: unless-stopped
+        tty: true
+        depends_on:
+          - db
+          - redis
+        entrypoint: ./docker/entrypoint-app.sh
+        volumes:
+          - ./:/var/www
+          - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+          - payment-network
+
+    webserver:
+        image: nginx:alpine
+        container_name: payment-nginx
+        restart: always
+        tty: true
+        ports:
+          - "8087:80"
+        volumes:
+          - ./:/var/www
+          - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+          - payment-network
+
+    db:
+        image: mysql:8.0.32
+        container_name: payment-db
+        restart: always
+        tty: true
+        environment:
+          MYSQL_DATABASE: "payment"
+          MYSQL_ROOT_PASSWORD: "root"
+          MYSQL_USER: "payment"
+          MYSQL_PASSWORD: "secret"
+        ports:
+          - "3309:3306"
+        volumes:
+          - paymentdbdata:/var/lib/mysql/
+          - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+          - payment-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: payment-phpmyadmin
+        environment:
+          PMA_HOST: db
+          MYSQL_USER: "payment"
+          MYSQL_PASSWORD: "secret"
+        ports:
+          - "8987:80"
+        networks:
+          - payment-network
+
+    redis:
+        image: redis:latest
+        container_name: payment-redis
+        ports:
+          - "6377:6379"
+        volumes:
+          - paymentredisdata:/data
+        networks:
+          - payment-network
+
+#Docker Networks
+networks:
+    payment-network:
+        driver: bridge
+
+#Volumes
+volumes:
+    paymentdbdata:
+        driver: "local"
+    paymentredisdata:
+        driver: "local"
+    phpmyadmindata:
+        driver: "local"

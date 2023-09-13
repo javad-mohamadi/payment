@@ -40,6 +40,11 @@ return [
             'driver'   => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver'   => 'passport',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -111,5 +116,20 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    'clients' => [
+        'web'    => [
+            'admin' => [
+                'id'     => env('CLIENT_WEB_ADMIN_ID'),
+                'secret' => env('CLIENT_WEB_ADMIN_SECRET'),
+            ],
+        ],
+        'mobile' => [
+            'admin' => [
+                'id'     => env('CLIENT_MOBILE_ADMIN_ID'),
+                'secret' => env('CLIENT_MOBILE_ADMIN_SECRET'),
+            ],
+        ],
+    ],
 
 ];

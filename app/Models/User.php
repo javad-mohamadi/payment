@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'mobile',
         'password',
     ];
 
@@ -38,7 +38,13 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Set as username any column from users table
+    public function findForPassport($username)
+    {
+        $customUsername = 'mobile';
+        return $this->where($customUsername, $username)->first();
+    }
 }

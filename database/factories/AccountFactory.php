@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enum\CurrencyEnum;
+use App\Enum\AccountTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory
@@ -21,8 +21,8 @@ class AccountFactory extends Factory
         return [
             'account_number' => fake()->creditCardNumber,
             'balance'        => 0,
-            'currency'       => 'IRR',
-            'account_type'   => 'SAVING',
+            'currency'       => CurrencyEnum::CURRENCY_IRR,
+            'account_type'   => AccountTypeEnum::SHORT_TERM,
         ];
     }
 }

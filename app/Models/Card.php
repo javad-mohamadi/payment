@@ -15,7 +15,8 @@ class Card extends Model
         'card_number',
         'card_type',
         'cvv2',
-        'expiration_date',
+        'static_second_password',
+        'expire_date',
         'account_id',
     ];
 
@@ -27,6 +28,11 @@ class Card extends Model
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function cardDynamicPasswords(): HasMany
+    {
+        return $this->hasMany(CardDynamicPassword::class);
     }
 }
 

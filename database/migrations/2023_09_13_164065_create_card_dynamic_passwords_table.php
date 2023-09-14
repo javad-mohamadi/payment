@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('card_dynamic_passwords', function (Blueprint $table) {
             $table->id();
             $table->foreignId('card_id')->constrained('cards')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('source_account_number');
-            $table->string('dest_account_number');
-            $table->decimal('amount', 15);
-            $table->string('transaction_type');
+            $table->string('dest_card_number')->unique();
+            $table->string('amount');
+            $table->string('password');
+            $table->boolean('used')->default(0);
+            $table->timestamp('expire_at');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('card_dynamic_passwords');
     }
 };

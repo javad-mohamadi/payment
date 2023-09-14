@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -41,10 +42,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Set as username any column from users table
-    public function findForPassport($username)
+    public function findForPassport($username): User
     {
         $customUsername = 'mobile';
         return $this->where($customUsername, $username)->first();
+    }
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    public function smsLogs(): HasMany
+    {
+        return $this->hasMany(SmsLogs::class);
     }
 }

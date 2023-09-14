@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('card_id')->constrained('cards')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('source_account_number');
-            $table->string('dest_account_number');
-            $table->decimal('amount', 15);
-            $table->string('transaction_type');
+            $table->string('key')->unique();
+            $table->text('value');
+            $table->string('group');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('configs');
     }
 };

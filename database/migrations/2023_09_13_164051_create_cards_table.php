@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('account_id')->constrained('accounts')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('card_number')->unique();
             $table->string('cvv2',4);
+            $table->string('static_second_password')->nullable();
             $table->string('card_type');
-            $table->date('expiration_date');
+            $table->date('expire_date');
             $table->timestamps();
             $table->softDeletes();
         });

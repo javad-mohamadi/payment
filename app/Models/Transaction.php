@@ -10,7 +10,7 @@ class Transaction extends Model
 {
     protected $fillable = [
         'source_account_number',
-        'destination_account_number',
+        'dest_account_number',
         'amount',
         'transaction_type',
     ];

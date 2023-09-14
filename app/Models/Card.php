@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Card extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'card_number',
         'card_type',

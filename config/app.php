@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Sms\Sms;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -170,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ServiceRepositoryProvider::class,
         App\Providers\ServiceLayerProvider::class,
+        App\Providers\SmsServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,7 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+         'Sms' => Sms::class,
     ])->toArray(),
 
 ];

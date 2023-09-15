@@ -15,14 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('card_id')->constrained('cards')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('dest_card_number')->unique();
-            $table->string('amount');
-            $table->string('password');
+            $table->unsignedBigInteger('amount');
+            $table->string('otp');
             $table->boolean('used')->default(0);
-            $table->timestamp('expire_at');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

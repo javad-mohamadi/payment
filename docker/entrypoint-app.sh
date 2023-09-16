@@ -31,12 +31,13 @@ echo "==> Start to run migrations"
 php /var/www/artisan migrate
 echo "==> Complete migrations"
 
+echo "==> Start to run passport install"
+php /var/www/artisan passport:install
+echo "==> Complete passport install"
+
 echo "==> Start to run seeder"
 php /var/www/artisan db:seed
 echo "==> Complete seeder"
 
-echo "==> Start to run passport install"
-php /var/www/artisan passport:install
-echo "==> Complete passport install"
 
 php-fpm

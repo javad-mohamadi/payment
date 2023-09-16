@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('transaction_fees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->constrained('transactions')->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->decimal('fee_amount', 15);
+            $table->foreignId('transfer_id')->constrained('transfers')
+                ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('bank_account_id')->constrained('accounts')
+                ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('amount');
             $table->timestamps();
         });
     }

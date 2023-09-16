@@ -12,7 +12,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('app:update-limit-static-password-transfer-amount-command')
+            ->everySecond()
+            ->withoutOverlapping(20)
+            ->runInBackground();
+
+        $schedule->command('app:remove-used-and-expired-card-dynamic-second-password-command')
+            ->everySecond()
+            ->withoutOverlapping(20)
+            ->runInBackground();
     }
 
     /**

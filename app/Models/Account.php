@@ -12,11 +12,11 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'account_number',
+        'number',
         'user_id',
         'balance',
         'currency',
-        'account_type',
+        'type',
     ];
 
     public function user(): BelongsTo
@@ -27,6 +27,16 @@ class Account extends Model
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function feeTransactions(): HasMany
+    {
+        return $this->hasMany(TransactionFee::class);
     }
 }
 

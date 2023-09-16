@@ -2,13 +2,10 @@
 
 namespace App\Enum;
 
-use Illuminate\Validation\Rules\Enum;
-
-class ConfigEnum extends Enum
+Enum ConfigEnum: string
 {
-    const DEPOSIT = 'DEPOSIT';
-    const WITHDRAW = 'WITHDRAW';
-    const TOW_FACTOR = 'TOW_FACTOR';
-
-    const PAYMENT = 'PAYMENT';
+    case DEPOSIT = 'deposit';
+    case WITHDRAW = 'withdraw';
+    case TWO_FACTOR = 'two_factor';
+    case PAYMENT = 'payment';
 }

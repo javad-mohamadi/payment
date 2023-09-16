@@ -2,9 +2,7 @@
 
 namespace App\Enum;
 
-use Illuminate\Validation\Rules\Enum;
-
-class CurrencyEnum extends Enum
+Enum CurrencyEnum: string
 {
-    const CURRENCY_IRR = 'IRR';
+    case CURRENCY_IRR = 'irr';
 }

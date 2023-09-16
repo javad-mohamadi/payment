@@ -3,21 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
     protected $fillable = [
-        'source_account_number',
-        'dest_account_number',
+        'account_id',
+        'transfer_id',
         'amount',
-        'transaction_type',
+        'type',
     ];
 
-    public function card(): BelongsTo
+    public function account(): BelongsTo
     {
-        return $this->belongsTo(Card::class);
+        return $this->belongsTo(Account::class);
     }
 
     public function transactionFee(): HasOne

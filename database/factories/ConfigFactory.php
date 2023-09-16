@@ -15,9 +15,9 @@ class ConfigFactory extends Factory
     public function definition(): array
     {
         return [
-            'key' =>  $this->faker->unique()->word,
+            'key'   => $this->faker->unique()->word,
             'value' => $this->faker->word,
-            'group' => ConfigEnum::DEPOSIT,
+            'group' => ConfigEnum::DEPOSIT->value,
         ];
     }
 }

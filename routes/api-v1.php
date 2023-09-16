@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BackofficeUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\BackofficeUserController;

@@ -9,9 +9,10 @@ use App\Services\AccountService;
 use App\Services\SmsLogService;
 use App\Services\TransferService;
 use App\Services\TransactionService;
-use App\Services\AuthenticationService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\TransactionFeeService;
+use App\Services\BackofficeUserService;
+use App\Services\AuthenticationService;
 use App\Services\CardDynamicPasswordService;
 use App\Services\Interfaces\CardServiceInterface;
 use App\Services\Interfaces\ConfigServiceInterface;
@@ -22,6 +23,7 @@ use App\Services\Interfaces\TransferServiceInterface;
 use App\Services\Interfaces\TransactionServiceInterface;
 use App\Services\Interfaces\AuthenticationServiceInterface;
 use App\Services\Interfaces\TransactionFeeServiceInterface;
+use App\Services\Interfaces\BackofficeUserServiceInterface;
 use App\Services\Interfaces\CardDynamicPasswordServiceInterface;
 
 class ServiceLayerProvider extends ServiceProvider
@@ -43,6 +45,7 @@ class ServiceLayerProvider extends ServiceProvider
         $this->app->bind(TransferServiceInterface::class, TransferService::class);
         $this->app->bind(SmsLogServiceInterface::class, SmsLogService::class);
         $this->app->bind(ConfigServiceInterface::class, ConfigService::class);
+        $this->app->bind(BackofficeUserServiceInterface::class, BackofficeUserService::class);
     }
 
     /**

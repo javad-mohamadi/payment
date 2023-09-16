@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\BackofficeUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\Api\V1\BackofficeUserController;
 
 Route::group(['prefix' => 'payments'], function () {
     Route::post('transfer', [PaymentController::class, 'transfer'])->name('payment_transfer');

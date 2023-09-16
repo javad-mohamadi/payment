@@ -7,7 +7,9 @@
     "require": {
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
+        "ghasedak/php": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
+        "kavenegar/php": "^1.2",
         "laravel/framework": "^10.14",
         "laravel/passport": "^11.9",
         "laravel/sanctum": "^3.2",
@@ -29,7 +31,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -2,10 +2,7 @@
 
 namespace App\Http\Requests;
 
-use JetBrains\PhpStorm\ArrayShape;
-use Illuminate\Foundation\Http\FormRequest;
-
-class LoginRequest extends FormRequest
+class LoginRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +22,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mobile'    => 'required|regex:/(09)[0-9]{9}/|digits:11|numeric|exists:users,mobile',
-            'password' => 'required|min:6|max:30',
+            'mobile'   => 'required|regex:/(09)[0-9]{9}/|digits:11|numeric|exists:users,mobile',
+            'password' => 'required|min:4|max:30',
         ];
     }
 

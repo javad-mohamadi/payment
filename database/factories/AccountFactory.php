@@ -19,10 +19,10 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'account_number' => fake()->creditCardNumber,
-            'balance'        => 0,
-            'currency'       => CurrencyEnum::CURRENCY_IRR,
-            'account_type'   => AccountTypeEnum::SHORT_TERM,
+            'number'   => fake()->creditCardNumber,
+            'balance'  => 0,
+            'currency' => CurrencyEnum::CURRENCY_IRR->value,
+            'type'     => AccountTypeEnum::SHORT_TERM->value,
         ];
     }
 }

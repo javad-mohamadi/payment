@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\TransferSendSmsEvent;
+use App\Listeners\DepositSendSmsListener;
+use App\Listeners\WithdrawSendSmsListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -12,6 +15,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
+        TransferSendSmsEvent::class => [
+            DepositSendSmsListener::class,
+            WithdrawSendSmsListener::class,
+        ]
     ];
 
     /**

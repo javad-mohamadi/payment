@@ -2,12 +2,10 @@
 
 namespace App\Enum;
 
-use Illuminate\Validation\Rules\Enum;
-
-class AccountTypeEnum extends Enum
+Enum AccountTypeEnum: string
 {
-    const SAVING = 'SAVING';
-    const SHORT_TERM = 'SHORT_TERM';
-    const CHECKING = 'CHECKING';
-    const BUSINESS = 'BUSINESS';
+    case SYSTEM = 'system';
+    case SHORT_TERM = 'short_term';
+    case CHECKING = 'checking';
+    case BUSINESS = 'business';
 }

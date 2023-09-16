@@ -2,12 +2,10 @@
 
 namespace App\Enum;
 
-use Illuminate\Validation\Rules\Enum;
-
-class CardTypeEnum extends Enum
+Enum CardTypeEnum: string
 {
-    const CREDIT_CARD = 'CREDIT';
-    const GIFT_CARD = 'GIFT';
-    const SMART_CARD = 'SMART';
-    const DEBIT_CARD = 'DEBIT';
+    case CREDIT_CARD = 'credit';
+    case GIFT_CARD = 'gift';
+    case SMART_CARD = 'smart';
+    case DEBIT_CARD = 'debit';
 }

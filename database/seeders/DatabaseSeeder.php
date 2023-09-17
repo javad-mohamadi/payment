@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'mobile' => '09213910615',
         ]);
 
-        $adminAccount = Account::factory()->create([
+        Account::factory()->create([
             'number'   => 39098000112460000,
             'user_id'  => $superAdmin->id,
             'balance'  => 0,
@@ -52,6 +52,14 @@ class DatabaseSeeder extends Seeder
             'type'     => AccountTypeEnum::SHORT_TERM->value,
         ]);
 
+        $firstUserAccount2 = Account::factory()->create([
+            'number'   => 39098000112457181,
+            'user_id'  => $firstUser->id,
+            'balance'  => 50000000,
+            'currency' => CurrencyEnum::CURRENCY_IRR->value,
+            'type'     => AccountTypeEnum::SHORT_TERM->value,
+        ]);
+
         $secondUserAccount = Account::factory()->create([
             'number'   => 39098000112460182,
             'user_id'  => $secondUser->id,
@@ -60,15 +68,16 @@ class DatabaseSeeder extends Seeder
             'type'     => AccountTypeEnum::SHORT_TERM->value,
         ]);
 
-        Card::factory()->create([
-            'number'      => 5022291085189544,
-            'type'        => CardTypeEnum::CREDIT_CARD->value,
-            'account_id'  => $adminAccount->id,
-            'expire_date' => now()->setDate(2028, 01, 01),
+        $secondUserAccount2 = Account::factory()->create([
+            'number'   => 390980001124584578,
+            'user_id'  => $secondUser->id,
+            'balance'  => 100000000,
+            'currency' => CurrencyEnum::CURRENCY_IRR->value,
+            'type'     => AccountTypeEnum::SHORT_TERM->value,
         ]);
 
         Card::factory()->create([
-            'number'                 => 5022291085189000,
+            'number'                 => 6063731133424250,
             'type'                   => CardTypeEnum::CREDIT_CARD->value,
             'account_id'             => $firstUserAccount->id,
             'static_second_password' => Hash::make(123456),
@@ -76,28 +85,44 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Card::factory()->create([
-            'number'                 => 5022291045501111,
+            'number'                 => 5022291085189544,
+            'type'                   => CardTypeEnum::CREDIT_CARD->value,
+            'account_id'             => $firstUserAccount2->id,
+            'static_second_password' => Hash::make(123456),
+            'expire_date'            => now()->setDate(2028, 01, 01),
+        ]);
+
+        Card::factory()->create([
+            'number'                 => 5022291085189460,
             'type'                   => CardTypeEnum::CREDIT_CARD->value,
             'account_id'             => $secondUserAccount->id,
             'static_second_password' => Hash::make(123456),
             'expire_date'            => now()->setDate(2028, 01, 01),
         ]);
 
+        Card::factory()->create([
+            'number'                 => 5022291085189551,
+            'type'                   => CardTypeEnum::CREDIT_CARD->value,
+            'account_id'             => $secondUserAccount2->id,
+            'static_second_password' => Hash::make(123456),
+            'expire_date'            => now()->setDate(2028, 01, 01),
+        ]);
+
         Config::factory()->create([
             'key'   => ConfigEnum::DEPOSIT->value,
-            'value' => 'Amount:%s IRR was deposited to your account:%s on Date:%s Time:%s',
+            'value' => 'Amount:%s IRR was deposited to your account:%s on Date:%s',
             'group' => ConfigEnum::PAYMENT->value,
         ]);
 
         Config::factory()->create([
             'key'   => ConfigEnum::WITHDRAW->value,
-            'value' => 'Amount:%s IRR  was withdrawn from your account:%S on Date:%s Time:%s',
+            'value' => 'Amount:%s IRR  was withdrawn from your account:%S on Date:%s',
             'group' => ConfigEnum::PAYMENT->value,
         ]);
 
         Config::factory()->create([
             'key'   => ConfigEnum::TWO_FACTOR->value,
-            'value' => "one-time code:%s withdraw from this account:%s Date:%s Time:%s",
+            'value' => "one-time code:%s withdraw from this account:%s Date:%s",
             'group' => ConfigEnum::PAYMENT->value,
         ]);
 

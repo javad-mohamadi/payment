@@ -16,5 +16,6 @@ class GhasedakSmsService implements SmsServiceInterface
 
     public function send(string $receptor, string $message)
     {
+        dd('implement ghasedak');
     }
 }

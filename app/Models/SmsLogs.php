@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SmsLogs extends Model
 {
     protected $fillable = [
-      'fee_amount',
+      'user_id',
+      'mobile',
+      'message',
     ];
 
     public function user(): BelongsTo

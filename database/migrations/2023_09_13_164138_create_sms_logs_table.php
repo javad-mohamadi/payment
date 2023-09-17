@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('mobile');
-            $table->text('message_content');
+            $table->text('message');
             $table->timestamps();
         });
     }

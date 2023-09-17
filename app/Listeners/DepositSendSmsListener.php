@@ -19,6 +19,10 @@ class DepositSendSmsListener implements ShouldQueue
 
     public function handle(TransferSendSmsEvent $event): void
     {
+        if (!isset($event->data['dest_user_id'])){
+            return;
+        }
+
         $mobile = $event->data['dest_mobile'];
         $userId = $event->data['dest_user_id'];
         $accountNumber = $event->data['dest_account_number'];

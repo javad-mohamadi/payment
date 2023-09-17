@@ -21,7 +21,7 @@ class CardFactory extends Factory
         return [
             'number'      => fake()->creditCardNumber,
             'type'        => CardTypeEnum::CREDIT_CARD->value,
-            'cvv2'        => rand('001', '9999'),
+            'cvv2'        => '9999',
             'expire_date' => Carbon::now()->addYears(5),
         ];
     }

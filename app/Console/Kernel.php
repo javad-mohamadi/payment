@@ -13,14 +13,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('app:update-limit-static-password-transfer-amount-command')
-            ->everySecond()
-            ->withoutOverlapping(20)
-            ->runInBackground();
+            ->cron('0 0 * * *')->withoutOverlapping()->timezone('Asia/Tehran');
+
+        $schedule->command('app:update-limit-dynamic-password-transfer-amount-command')
+            ->cron('0 0 * * *')->withoutOverlapping()->timezone('Asia/Tehran');
 
         $schedule->command('app:remove-used-and-expired-card-dynamic-second-password-command')
-            ->everySecond()
-            ->withoutOverlapping(20)
-            ->runInBackground();
+            ->cron('0 0 * * *')->withoutOverlapping()->timezone('Asia/Tehran');
     }
 
     /**

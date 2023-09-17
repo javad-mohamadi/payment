@@ -6,8 +6,6 @@ use App\Criteria\GetUsersTransactionsCriteria;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\Interfaces\TransactionServiceInterface;
 use App\Services\Interfaces\BackofficeUserServiceInterface;
-use App\Services\Interfaces\BackofficeUserServiceInterface;
-use App\Services\Interfaces\TransactionServiceInterface;
 
 class BackofficeUserService implements BackofficeUserServiceInterface
 {

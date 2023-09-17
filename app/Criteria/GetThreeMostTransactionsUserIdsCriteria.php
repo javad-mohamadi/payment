@@ -14,7 +14,7 @@ class GetThreeMostTransactionsUserIdsCriteria implements CriteriaInterface
 
     public function apply($model, RepositoryInterface $repository)
     {
-        $time = now()->subMinutes(1000);
+        $time = now()->subMinutes(10);
 
         return $model->with(['account:id,user_id'])
             ->select('account_id', DB::raw('COUNT(account_id) as transaction_count'))

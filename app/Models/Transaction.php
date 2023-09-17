@@ -15,6 +15,11 @@ class Transaction extends Model
         'type',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);

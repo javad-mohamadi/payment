@@ -13,6 +13,9 @@ class GetUsersTransactionsCriteria implements CriteriaInterface
 
     public function apply($model, RepositoryInterface $repository)
     {
-        return $model->whereIn('id', $this->ids)->with('accounts.transactions')->get();
+        return $model->whereIn('id', $this->ids)
+            ->with(['accounts.transactions' => function ($query) {
+                $query->orderBy('created_at', 'DESC');
+            }])->get();
     }
 }

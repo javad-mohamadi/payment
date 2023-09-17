@@ -7,6 +7,7 @@ use App\Models\Card;
 use App\Services\Interfaces\CardServiceInterface;
 use App\Repositories\Card\CardRepositoryInterface;
 use App\Criteria\UpdateLimitStaticPasswordTransferAmount;
+use App\Criteria\UpdateLimitDynamicPasswordTransferAmount;
 
 class CardService implements CardServiceInterface
 {
@@ -37,8 +38,14 @@ class CardService implements CardServiceInterface
         }
     }
 
-    public function updateLimitStaticPasswordTransferAmount()
+    public function updateLimitStaticPasswordTransferAmount(): void
     {
         $this->repository->pushCriteria(new UpdateLimitStaticPasswordTransferAmount());
     }
+
+    public function updateLimitDynamicPasswordTransferAmount(): void
+    {
+        $this->repository->pushCriteria(new UpdateLimitDynamicPasswordTransferAmount());
+    }
+
 }

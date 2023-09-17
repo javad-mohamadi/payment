@@ -15,4 +15,6 @@ interface CardServiceInterface
     public function checkCvv2(Card $card, string $cvv2);
 
     public function updateLimitStaticPasswordTransferAmount();
+
+    public function updateLimitDynamicPasswordTransferAmount();
 }

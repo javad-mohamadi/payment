@@ -39,12 +39,12 @@ class PaymentService implements PaymentServiceInterface
     public function transfer(TransferDto $dto): string
     {
         $destCard = $this->cardService->findByCardNumber($dto->destCardNumber);
-        $transfer = $this->saveTransfer($dto, $destCard->id ?? null);
+        $sourceCard = $this->cardService->findByCardNumber($dto->sourceCardNumber);
+        $transfer = $this->saveTransfer($dto, $sourceCard->id, $destCard->id ?? null);
 
         DB::beginTransaction();
         try {
             $transferFee = config('transfer.fee');
-            $sourceCard = $this->cardService->find($dto->sourceCardId);
             $sourceAccount = $this->accountService->lockForUpdate($sourceCard->account);
 
             $this->checkUserIsCardOwner($sourceAccount, $dto->userId);
@@ -98,11 +98,11 @@ class PaymentService implements PaymentServiceInterface
         }
     }
 
-    private function saveTransfer(TransferDTO $dto, ?int $destCardId): Transfer
+    private function saveTransfer(TransferDTO $dto, $sourceCardId, ?int $destCardId): Transfer
     {
         $destCardPreNum = substr($dto->destCardNumber, 0, 4);
         $data = [
-            'source_card_id'   => $dto->sourceCardId,
+            'source_card_id'   => $sourceCardId,
             'dest_card_id'     => $destCardId,
             'dest_card_number' => $dto->destCardNumber,
             'dest_bank'        => BankEnum::getBanks()[$destCardPreNum]->value,

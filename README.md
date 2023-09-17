@@ -19,10 +19,10 @@
     - /api/v1/payments/transfer
     - request:
       {
-      "source_card_number": "6063731133424250",
-      "dest_card_number": "5022291085189544",
+      "source_card_number": "5022291085189544",
+      "dest_card_number": "5022291085189460",
       "amount": "۱۰۰۰۰۰",
-      "cvv2":"8994",
+      "cvv2":"9999",
       "password": "123456"
       }
   

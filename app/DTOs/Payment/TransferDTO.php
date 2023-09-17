@@ -8,7 +8,7 @@ class TransferDTO
 {
     public function __construct(
         public int    $userId,
-        public int    $sourceCardId,
+        public int    $sourceCardNumber,
         public string $destCardNumber,
         public int    $amount,
         public string $cvv2,
@@ -21,7 +21,7 @@ class TransferDTO
     {
         return new static(
             $user->id,
-            $request['source_card_id'],
+            $request['source_card_number'],
             $request['dest_card_number'],
             $request['amount'],
             $request['cvv2'],
